@@ -31,62 +31,48 @@ body {
 /* ================================================================
    CUSTOM SCROLLBAR
 ================================================================ */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #0A0A0A;
-}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
 ::-webkit-scrollbar-thumb {
-  background: #C6FF00;
+  background: linear-gradient(to bottom, #C6FF00, #6b8e00);
   border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #9dbf00;
 }
 
 /* ================================================================
    CUSTOM CURSOR
 ================================================================ */
 .cursor-dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   background-color: #C6FF00;
   border-radius: 50%;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: transform 0.05s linear;
-  box-shadow: 0 0 10px #C6FF00, 0 0 20px rgba(198, 255, 0, 0.5);
+  box-shadow: 0 0 8px #C6FF00, 0 0 16px rgba(198, 255, 0, 0.6);
+  mix-blend-mode: screen;
 }
 
 .cursor-ring {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(198, 255, 0, 0.6);
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(198, 255, 0, 0.5);
   border-radius: 50%;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   pointer-events: none;
   z-index: 99998;
   transform: translate(-50%, -50%);
-  transition: transform 0.12s ease-out, width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 
 .cursor-ring.hovering {
-  width: 56px;
-  height: 56px;
-  border-color: #C6FF00;
-  background-color: rgba(198, 255, 0, 0.05);
-}
-
-body:hover .cursor-dot,
-body:hover .cursor-ring {
-  opacity: 1;
+  width: 52px;
+  height: 52px;
+  border-color: rgba(198, 255, 0, 0.8);
+  background-color: rgba(198, 255, 0, 0.04);
 }
 
 /* ================================================================
@@ -94,13 +80,18 @@ body:hover .cursor-ring {
 ================================================================ */
 .scroll-progress {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   height: 2px;
-  background: linear-gradient(90deg, #C6FF00, #9dbf00);
+  background: linear-gradient(90deg, #C6FF00 0%, #9dcc00 50%, #C6FF00 100%);
+  background-size: 200% 100%;
+  animation: progressShimmer 2s linear infinite;
   z-index: 99997;
-  box-shadow: 0 0 10px rgba(198, 255, 0, 0.6);
-  transform-origin: left;
+  box-shadow: 0 0 12px rgba(198, 255, 0, 0.7);
+}
+
+@keyframes progressShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 /* ================================================================
@@ -110,10 +101,10 @@ body:hover .cursor-ring {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(198,255,0,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(198,255,0,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: gridMove 30s linear infinite;
+    linear-gradient(rgba(198,255,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198,255,0,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: gridMove 40s linear infinite;
   pointer-events: none;
   z-index: 0;
 }
@@ -122,17 +113,18 @@ body:hover .cursor-ring {
    GLASSMORPHISM UTILITIES
 ================================================================ */
 .glass {
-  background: rgba(17, 17, 17, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
 .glass-nav {
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(198, 255, 0, 0.08);
+  background: rgba(8, 8, 8, 0.9);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-bottom: 1px solid rgba(198, 255, 0, 0.07);
 }
 
 /* ================================================================
@@ -140,12 +132,7 @@ body:hover .cursor-ring {
 ================================================================ */
 .neon-text {
   color: #C6FF00;
-  text-shadow: 0 0 20px rgba(198, 255, 0, 0.5);
-}
-
-.neon-border {
-  border-color: #C6FF00;
-  box-shadow: 0 0 15px rgba(198, 255, 0, 0.3), inset 0 0 15px rgba(198, 255, 0, 0.05);
+  text-shadow: 0 0 30px rgba(198, 255, 0, 0.45), 0 0 60px rgba(198, 255, 0, 0.15);
 }
 
 .neon-glow {
@@ -153,32 +140,46 @@ body:hover .cursor-ring {
 }
 
 /* ================================================================
-   BLOB BACKGROUND EFFECTS
+   GRADIENT TEXT
 ================================================================ */
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.15;
-  pointer-events: none;
+.gradient-text {
+  background: linear-gradient(135deg, #C6FF00 0%, #8dce00 50%, #C6FF00 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
 }
 
-.blob-green {
-  background: radial-gradient(circle, #C6FF00, transparent 70%);
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* ================================================================
-   SECTION TRANSITIONS
+   ANIMATED GRADIENT BORDER (for premium cards)
 ================================================================ */
-.section-fade-up {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+.gradient-border {
+  position: relative;
+  border-radius: 1.25rem;
 }
 
-.section-fade-up.visible {
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(198,255,0,0.2), transparent 40%, rgba(198,255,0,0.1), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gradient-border:hover::before {
   opacity: 1;
-  transform: translateY(0);
 }
 
 /* ================================================================
@@ -189,19 +190,25 @@ body:hover .cursor-ring {
   overflow: hidden;
 }
 
-.card-spotlight::before {
+.card-spotlight::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(198, 255, 0, 0.06), transparent 40%);
-  z-index: 1;
+  background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(198, 255, 0, 0.055), transparent 45%);
+  z-index: 0;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.35s;
   pointer-events: none;
+  border-radius: inherit;
 }
 
-.card-spotlight:hover::before {
+.card-spotlight:hover::after {
   opacity: 1;
+}
+
+.card-spotlight > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* ================================================================
@@ -219,26 +226,42 @@ body:hover .cursor-ring {
   width: 0%;
   height: 1px;
   background: #C6FF00;
-  transition: width 0.3s ease;
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 6px rgba(198, 255, 0, 0.6);
 }
 
-.animated-underline:hover::after {
-  width: 100%;
+.animated-underline:hover::after { width: 100%; }
+
+/* ================================================================
+   MARQUEE TICKER
+================================================================ */
+.marquee-track {
+  display: flex;
+  gap: 0;
+  animation: marqueeScroll 25s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-wrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 /* ================================================================
    TIMELINE CONNECTOR
 ================================================================ */
 .timeline-line {
-  background: linear-gradient(to bottom, transparent, #C6FF00, transparent);
-}
-
-/* ================================================================
-   SELECTION COLOR
-================================================================ */
-::selection {
-  background: rgba(198, 255, 0, 0.2);
-  color: #C6FF00;
+  background: linear-gradient(to bottom, transparent 0%, rgba(198,255,0,0.6) 30%, rgba(198,255,0,0.6) 70%, transparent 100%);
 }
 
 /* ================================================================
@@ -246,7 +269,21 @@ body:hover .cursor-ring {
 ================================================================ */
 .neon-separator {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(198,255,0,0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(198,255,0,0.35), transparent);
+  position: relative;
+}
+
+.neon-separator::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: #C6FF00;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #C6FF00, 0 0 20px rgba(198,255,0,0.5);
 }
 
 /* ================================================================
@@ -258,58 +295,147 @@ body:hover .cursor-ring {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 1;
-  opacity: 0.4;
+  opacity: 0.35;
 }
 
 /* ================================================================
-   MAGNETIC BUTTON
+   BLOB BACKGROUND EFFECTS
 ================================================================ */
-.magnetic-btn {
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform;
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.blob-green { background: radial-gradient(circle, rgba(198,255,0,0.18), transparent 65%); }
+.blob-dim   { background: radial-gradient(circle, rgba(198,255,0,0.07), transparent 65%); }
+
+/* ================================================================
+   SELECTION COLOR
+================================================================ */
+::selection {
+  background: rgba(198, 255, 0, 0.18);
+  color: #C6FF00;
+}
+
+/* ================================================================
+   SKILL CARD NUMBER
+================================================================ */
+.skill-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(198,255,0,0.3);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.group:hover .skill-number { color: rgba(198,255,0,0.7); }
+
+/* ================================================================
+   PROJECT CARD OVERLAY
+================================================================ */
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(10,10,10,0.4) 40%,
+    rgba(10,10,10,0.95) 100%
+  );
+  transition: background 0.4s ease;
+}
+
+.group:hover .project-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(198,255,0,0.04) 0%,
+    rgba(10,10,10,0.5) 40%,
+    rgba(10,10,10,0.97) 100%
+  );
+}
+
+/* ================================================================
+   HERO PORTRAIT GLOW FRAME
+================================================================ */
+.portrait-glow {
+  box-shadow:
+    0 0 0 1px rgba(198,255,0,0.15),
+    0 0 30px rgba(198,255,0,0.12),
+    0 0 80px rgba(198,255,0,0.06);
+}
+
+/* ================================================================
+   ANIMATED COUNTER CARD
+================================================================ */
+.stat-card {
+  background: linear-gradient(135deg, rgba(17,17,17,0.9), rgba(20,20,20,0.6));
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: rgba(198,255,0,0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 20px rgba(198,255,0,0.06);
+}
+
+/* ================================================================
+   BUTTON SHINE EFFECT
+================================================================ */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -75%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,0.12),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.btn-shine:hover::after { left: 150%; }
+
+/* ================================================================
+   CONTACT GLOW ORB
+================================================================ */
+.contact-orb {
+  background: radial-gradient(circle at center, rgba(198,255,0,0.12) 0%, rgba(198,255,0,0.04) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: orbPulse 4s ease-in-out infinite;
+}
+
+@keyframes orbPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 1; }
 }
 
 /* ================================================================
    MOBILE MENU
 ================================================================ */
-.mobile-menu-enter {
-  animation: slideDown 0.3s ease forwards;
-}
-
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ================================================================
-   TYPING CURSOR BLINK
-================================================================ */
-.typing-cursor::after {
-  content: '|';
-  animation: blink 1s step-end infinite;
-  color: #C6FF00;
-  font-weight: 300;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ================================================================
    RESPONSIVE HELPERS
 ================================================================ */
 @media (max-width: 768px) {
-  .cursor-dot, .cursor-ring {
-    display: none;
-  }
-  body {
-    cursor: auto;
-  }
+  .cursor-dot, .cursor-ring { display: none; }
+  body { cursor: auto; }
 }

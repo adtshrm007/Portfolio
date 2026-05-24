@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================================================================
+   GLOBAL RESETS & BASE STYLES
+================================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: #0A0A0A;
+  color: #F5F5F5;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ================================================================
+   CUSTOM SCROLLBAR
+================================================================ */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #C6FF00;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9dbf00;
+}
+
+/* ================================================================
+   CUSTOM CURSOR
+================================================================ */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #C6FF00;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s linear;
+  box-shadow: 0 0 10px #C6FF00, 0 0 20px rgba(198, 255, 0, 0.5);
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(198, 255, 0, 0.6);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease-out, width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+}
+
+.cursor-ring.hovering {
+  width: 56px;
+  height: 56px;
+  border-color: #C6FF00;
+  background-color: rgba(198, 255, 0, 0.05);
+}
+
+body:hover .cursor-dot,
+body:hover .cursor-ring {
+  opacity: 1;
+}
+
+/* ================================================================
+   SCROLL PROGRESS BAR
+================================================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #C6FF00, #9dbf00);
+  z-index: 99997;
+  box-shadow: 0 0 10px rgba(198, 255, 0, 0.6);
+  transform-origin: left;
+}
+
+/* ================================================================
+   ANIMATED GRID BACKGROUND
+================================================================ */
+.animated-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(198,255,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198,255,0,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridMove 30s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================================================================
+   GLASSMORPHISM UTILITIES
+================================================================ */
+.glass {
+  background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-nav {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(198, 255, 0, 0.08);
+}
+
+/* ================================================================
+   NEON GLOW UTILITIES
+================================================================ */
+.neon-text {
+  color: #C6FF00;
+  text-shadow: 0 0 20px rgba(198, 255, 0, 0.5);
+}
+
+.neon-border {
+  border-color: #C6FF00;
+  box-shadow: 0 0 15px rgba(198, 255, 0, 0.3), inset 0 0 15px rgba(198, 255, 0, 0.05);
+}
+
+.neon-glow {
+  box-shadow: 0 0 20px rgba(198, 255, 0, 0.4), 0 0 60px rgba(198, 255, 0, 0.15);
+}
+
+/* ================================================================
+   BLOB BACKGROUND EFFECTS
+================================================================ */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.blob-green {
+  background: radial-gradient(circle, #C6FF00, transparent 70%);
+}
+
+/* ================================================================
+   SECTION TRANSITIONS
+================================================================ */
+.section-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.section-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================================================================
+   CARD HOVER SPOTLIGHT
+================================================================ */
+.card-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(198, 255, 0, 0.06), transparent 40%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.card-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* ================================================================
+   ANIMATED UNDERLINE
+================================================================ */
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: #C6FF00;
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* ================================================================
+   TIMELINE CONNECTOR
+================================================================ */
+.timeline-line {
+  background: linear-gradient(to bottom, transparent, #C6FF00, transparent);
+}
+
+/* ================================================================
+   SELECTION COLOR
+================================================================ */
+::selection {
+  background: rgba(198, 255, 0, 0.2);
+  color: #C6FF00;
+}
+
+/* ================================================================
+   SECTION SEPARATOR
+================================================================ */
+.neon-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(198,255,0,0.4), transparent);
+}
+
+/* ================================================================
+   NOISE TEXTURE OVERLAY
+================================================================ */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+/* ================================================================
+   MAGNETIC BUTTON
+================================================================ */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+/* ================================================================
+   MOBILE MENU
+================================================================ */
+.mobile-menu-enter {
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================================================
+   TYPING CURSOR BLINK
+================================================================ */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: #C6FF00;
+  font-weight: 300;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ================================================================
+   RESPONSIVE HELPERS
+================================================================ */
+@media (max-width: 768px) {
+  .cursor-dot, .cursor-ring {
+    display: none;
+  }
+  body {
+    cursor: auto;
+  }
+}

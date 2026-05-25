@@ -76,7 +76,7 @@ export default function Contact() {
               href={`mailto:${social.email}`}
               initial={{ opacity: 0, y: 16 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4 }}
-              className="group inline-flex items-center gap-3 bg-accent text-bg px-8 py-4 rounded-full font-bold text-base btn-shine hover:shadow-[0_0_40px_rgba(198,255,0,0.45)] transition-shadow duration-300"
+              className="group inline-flex items-center gap-3 bg-accent text-bg px-8 py-4 rounded-full font-bold text-base btn-shine hover:shadow-[0_0_40px_rgba(198,255,0,0.45)] transition-shadow duration-300 mb-12"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
             >
@@ -89,36 +89,92 @@ export default function Contact() {
                 <ArrowUpRight size={15} />
               </motion.span>
             </motion.a>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.5 }}
+              className="flex items-center gap-4"
+            >
+              <span className="text-xs text-gray-text tracking-[0.2em] uppercase font-medium mr-2">Or connect via</span>
+              {links.filter(l => l.label !== 'Email').map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-xl border border-white/8 bg-white/3 flex items-center justify-center text-gray-text hover:border-accent/40 hover:text-accent hover:bg-accent/8 transition-all duration-300 hover:-translate-y-1"
+                  aria-label={link.label}
+                >
+                  <link.icon size={16} />
+                </a>
+              ))}
+            </motion.div>
           </div>
 
-          {/* ── RIGHT: Contact cards ── */}
+          {/* ── RIGHT: Contact Form ── */}
           <motion.div
             initial={{ opacity: 0, x: 40 }} animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="space-y-3"
+            className="glass border border-white/5 rounded-3xl p-8 md:p-10"
           >
-            {links.map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target={link.label !== 'Email' ? '_blank' : undefined}
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, x: 24 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.4 + i * 0.07 }}
-                className={`group flex items-center gap-4 glass border border-white/5 rounded-2xl p-4 md:p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.5)] ${link.color}`}
-                whileHover={{ x: 4 }}
+            <form className="flex flex-col gap-8" onSubmit={(e) => e.preventDefault()}>
+              {/* Name */}
+              <div className="relative animated-underline">
+                <input
+                  type="text"
+                  id="name"
+                  placeholder=" "
+                  className="peer w-full bg-transparent border-b border-white/10 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                />
+                <label
+                  htmlFor="name"
+                  className="absolute left-0 top-3 text-[#6b7280] text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-accent peer-focus:text-xs peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs"
+                >
+                  Your Name
+                </label>
+              </div>
+
+              {/* Email */}
+              <div className="relative animated-underline">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder=" "
+                  className="peer w-full bg-transparent border-b border-white/10 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                />
+                <label
+                  htmlFor="email"
+                  className="absolute left-0 top-3 text-[#6b7280] text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-accent peer-focus:text-xs peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs"
+                >
+                  Email Address
+                </label>
+              </div>
+
+              {/* Message */}
+              <div className="relative animated-underline">
+                <textarea
+                  id="message"
+                  rows="4"
+                  placeholder=" "
+                  className="peer w-full bg-transparent border-b border-white/10 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors resize-none"
+                />
+                <label
+                  htmlFor="message"
+                  className="absolute left-0 top-3 text-[#6b7280] text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-accent peer-focus:text-xs peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs"
+                >
+                  Your Message
+                </label>
+              </div>
+
+              <motion.button
+                type="submit"
+                className="group relative flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-bold text-sm btn-shine hover:border-accent/40 hover:text-accent hover:bg-accent/5 transition-all duration-300 mt-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="w-11 h-11 rounded-xl border border-white/8 bg-white/3 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:border-current group-hover:scale-105">
-                  <link.icon size={17} className="transition-colors duration-300" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[11px] text-[#4b5563] tracking-wide mb-0.5 transition-colors duration-300">{link.label}</div>
-                  <div className="text-white text-sm font-medium truncate transition-colors duration-300">{link.sub}</div>
-                </div>
-                <ArrowUpRight size={15} className="text-[#374151] group-hover:text-current group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 flex-shrink-0" />
-              </motion.a>
-            ))}
+                Send Message
+              </motion.button>
+            </form>
           </motion.div>
         </div>
       </div>

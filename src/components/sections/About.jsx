@@ -30,7 +30,7 @@ function Counter({ end, suffix, trigger }) {
   return <>{count}{suffix}</>;
 }
 
-const TAGS = ['React', 'Node.js', 'MongoDB', 'TypeScript', 'Tailwind', 'GSAP', 'OpenAI', 'Socket.io', 'Figma', 'Next.js'];
+const TAGS = ['React', 'MERN', 'Tailwind CSS', 'GSAP', 'Socket.io', 'WebRTC', 'Node.js', 'MongoDB', 'AI Integration'];
 
 export default function About() {
   const ref = useRef(null);
@@ -71,14 +71,20 @@ export default function About() {
                 <motion.div
                   key={stat.label}
                   variants={fadeUp}
-                  className="stat-card rounded-2xl p-5 cursor-none"
+                  className={`stat-card rounded-2xl p-5 cursor-none flex flex-col justify-center ${stat.value === undefined ? 'items-center text-center' : ''}`}
                 >
-                  <div className="font-display font-black text-[2.2rem] leading-none mb-1">
-                    <span className="neon-text">
-                      <Counter end={stat.value} suffix={stat.suffix} trigger={isInView} />
-                    </span>
-                  </div>
-                  <div className="text-[#6b7280] text-xs tracking-wide uppercase font-medium">{stat.label}</div>
+                  {stat.value !== undefined ? (
+                    <>
+                      <div className="font-display font-black text-[2.2rem] leading-none mb-1">
+                        <span className="neon-text">
+                          <Counter end={stat.value} suffix={stat.suffix} trigger={isInView} />
+                        </span>
+                      </div>
+                      <div className="text-[#6b7280] text-xs tracking-wide uppercase font-medium">{stat.label}</div>
+                    </>
+                  ) : (
+                    <div className="text-white text-sm tracking-wide uppercase font-bold neon-text">{stat.label}</div>
+                  )}
                 </motion.div>
               ))}
             </motion.div>
@@ -102,15 +108,31 @@ export default function About() {
           {/* ── RIGHT ── */}
           <motion.div initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={stagger} className="space-y-5">
             {[
-              <>I'm <span className="text-white font-semibold">Aditya</span>, a full-stack developer specializing in the <span className="text-accent font-medium">MERN stack</span> — crafting everything from pixel-perfect frontends to scalable backend APIs.</>,
-              <>My journey started with curiosity about how websites work, and evolved into a passion for building <span className="text-white font-medium">immersive, real-time applications</span> that blend beautiful design with powerful engineering.</>,
-              <>I integrate <span className="text-accent font-medium">AI capabilities</span> into modern web apps — from intelligent chatbots to LLM-powered features. Deeply committed to <span className="text-white font-medium">open-source</span> learning and community sharing.</>,
-              <>As a <span className="text-white font-medium">freelancer</span>, I've partnered with startups and agencies to deliver products that leave lasting impressions — from initial concept to production deployment.</>,
+              <>I started my development journey in 2025 with curiosity for web technologies and quickly became passionate about creating modern digital experiences. Since then, I’ve been consistently learning and building projects focused on <span className="text-accent font-medium">frontend engineering, MERN stack development, real-time systems,</span> and AI-powered applications.</>,
+              <>I enjoy turning ideas into immersive user experiences through clean architecture, modern UI/UX design, and scalable development practices. My focus is not just writing code, but creating products that feel <span className="text-white font-medium">polished, interactive, and meaningful.</span></>,
             ].map((para, i) => (
               <motion.p key={i} variants={fadeUp} className="text-[#6b7280] text-base md:text-[1.05rem] leading-[1.8]">
                 {para}
               </motion.p>
             ))}
+
+            <motion.div variants={fadeUp} className="pt-2 pb-2">
+              <h3 className="text-white font-semibold mb-3">Currently, I’m:</h3>
+              <ul className="space-y-2 text-[#6b7280] text-sm md:text-base">
+                {[
+                  'Building full stack MERN applications',
+                  'Exploring AI integrations and SaaS architecture',
+                  'Learning advanced frontend engineering',
+                  'Contributing to open source projects',
+                  'Open to internships and freelance opportunities'
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-accent mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_#C6FF00] flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
 
             <motion.div variants={fadeUp} className="pt-2">
               <motion.button

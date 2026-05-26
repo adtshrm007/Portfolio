@@ -1,29 +1,55 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Star, MessageSquare, X, CheckCircle2, ArrowUpRight } from 'lucide-react';
-import { reviews } from '../../data/portfolioData';
+import { getReviews, addReview } from '../../utils/reviewService';
 
 export default function Reviews() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [fetchedReviews, setFetchedReviews] = useState([]);
+  
+  // Fetch reviews
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const res = await getReviews();
+      if (res && res.success) {
+        setFetchedReviews(res.data);
+      }
+    };
+    fetchReviews();
+  }, []);
   
   // Form state
   const [rating, setRating] = useState(5);
   const [hoveredRating, setHoveredRating] = useState(0);
+  const [name, setName] = useState('');
+  const [role, setRole] = useState('');
+  const [content, setContent] = useState('');
   const [formState, setFormState] = useState('idle'); // idle, submitting, success
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!name || !role || !content) return;
+    
     setFormState('submitting');
-    // Simulate network request
-    setTimeout(() => {
+    const res = await addReview({ name, role, content, rating });
+    
+    if (res && res.success) {
+      setFetchedReviews((prev) => [res.data, ...prev]);
       setFormState('success');
       setTimeout(() => {
         setIsModalOpen(false);
         setFormState('idle');
+        setName('');
+        setRole('');
+        setContent('');
+        setRating(5);
       }, 2500);
-    }, 1500);
+    } else {
+      setFormState('idle');
+      alert("Failed to submit review. Please try again.");
+    }
   };
 
   const containerV = {
@@ -83,18 +109,18 @@ export default function Reviews() {
           variants={containerV}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className={reviews && reviews.length > 0 ? "grid grid-cols-1 md:grid-cols-2 gap-6" : "w-full"}
+          className={fetchedReviews && fetchedReviews.length > 0 ? "grid grid-cols-1 md:grid-cols-2 gap-6" : "w-full"}
         >
-          {(!reviews || reviews.length === 0) ? (
+          {(!fetchedReviews || fetchedReviews.length === 0) ? (
             <motion.div variants={itemV} className="w-full flex flex-col items-center justify-center py-24 px-6 text-center glass border border-white/5 rounded-3xl border-dashed">
               <MessageSquare size={48} className="text-white/10 mb-6" />
               <h3 className="font-mono font-bold text-2xl text-white mb-3 uppercase tracking-wide">No Transmissions <span className="neon-text">Logged</span></h3>
               <p className="text-[#a1a1aa] text-base max-w-md">There are currently no reviews on file. If we've collaborated recently, be the first to share your experience.</p>
             </motion.div>
           ) : (
-            reviews.map((review) => (
+            fetchedReviews.map((review) => (
             <motion.div
-              key={review.id}
+              key={review._id}
               variants={itemV}
               className="group glass border border-white/5 rounded-3xl p-8 hover:border-white/15 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] transition-all duration-500 flex flex-col justify-between"
             >
@@ -114,11 +140,11 @@ export default function Reviews() {
               </div>
               <div className="flex items-center gap-4 border-t border-white/5 pt-6 mt-auto">
                 <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent font-bold font-mono text-sm uppercase">
-                  {review.name.charAt(0)}
+                  {review.name?.charAt(0) || '?'}
                 </div>
                 <div>
-                  <h4 className="text-white font-bold font-mono text-sm uppercase">{review.name}</h4>
-                  <p className="text-gray-text text-xs tracking-wider">{review.role}</p>
+                  <h4 className="text-white font-bold font-mono text-sm uppercase">{review.name || 'Anonymous'}</h4>
+                  <p className="text-gray-text text-xs tracking-wider">{review.role || 'Guest'}</p>
                 </div>
               </div>
             </motion.div>
@@ -200,18 +226,20 @@ export default function Reviews() {
                       <div className="relative animated-underline">
                         <input
                           type="text" id="r_name" required placeholder=" " disabled={formState !== 'idle'}
+                          value={name} onChange={(e) => setName(e.target.value)}
                           className="peer w-full bg-transparent border-b border-white/10 py-2 text-white text-sm focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
                         />
-                        <label htmlFor="r_name" className="absolute left-0 top-2 text-[#6b7280] text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-accent peer-focus:text-xs peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs">
+                        <label htmlFor="r_name" className="absolute left-0 top-2 text-[#6b7280] text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-accent peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
                           Name
                         </label>
                       </div>
                       <div className="relative animated-underline">
                         <input
                           type="text" id="r_role" required placeholder=" " disabled={formState !== 'idle'}
+                          value={role} onChange={(e) => setRole(e.target.value)}
                           className="peer w-full bg-transparent border-b border-white/10 py-2 text-white text-sm focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
                         />
-                        <label htmlFor="r_role" className="absolute left-0 top-2 text-[#6b7280] text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-accent peer-focus:text-xs peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs">
+                        <label htmlFor="r_role" className="absolute left-0 top-2 text-[#6b7280] text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-accent peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
                           Role / Company
                         </label>
                       </div>
@@ -220,9 +248,10 @@ export default function Reviews() {
                     <div className="relative animated-underline mt-2">
                       <textarea
                         id="r_message" rows="4" required placeholder=" " disabled={formState !== 'idle'}
+                        value={content} onChange={(e) => setContent(e.target.value)}
                         className="peer w-full bg-transparent border-b border-white/10 py-2 text-white text-sm focus:outline-none focus:border-accent transition-colors resize-none disabled:opacity-50"
                       />
-                      <label htmlFor="r_message" className="absolute left-0 top-2 text-[#6b7280] text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-accent peer-focus:text-xs peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs">
+                      <label htmlFor="r_message" className="absolute left-0 top-2 text-[#6b7280] text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-accent peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
                         Your Feedback
                       </label>
                     </div>

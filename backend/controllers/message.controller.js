@@ -1,4 +1,5 @@
 import messageModel from "../models/message.model.js";
+import sendEmail from "../utils/sendEmail.js";
 
 export const sendMessage = async (req, res) => {
   const { name, email, message } = req.body;
@@ -17,6 +18,12 @@ export const sendMessage = async (req, res) => {
     });
 
     await newMessage.save();
+    console.log("Controller Hit");
+    await sendEmail({
+      name,
+      email,
+      message,
+    });
 
     return res.status(201).json({
       message: "Message sent successfully",

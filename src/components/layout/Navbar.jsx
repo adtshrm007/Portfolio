@@ -47,7 +47,7 @@ export default function Navbar() {
 
   /* ── Close menu on resize ── */
   useEffect(() => {
-    const onResize = () => { if (window.innerWidth >= 768) setMenuOpen(false); };
+    const onResize = () => { if (window.innerWidth >= 1280) setMenuOpen(false); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
@@ -118,7 +118,7 @@ export default function Navbar() {
           </motion.a>
 
           {/* ── Desktop Nav ── */}
-          <nav className="hidden md:flex items-center gap-1 relative">
+          <nav className="hidden xl:flex items-center gap-1 relative">
             {/* track background */}
             <div className="absolute inset-0 rounded-full bg-[#111111]/80 border border-white/[0.04] backdrop-blur-md -z-10 shadow-[0_4px_20px_rgba(0,0,0,0.5)]" />
 
@@ -170,7 +170,7 @@ export default function Navbar() {
             {/* Hire Me button */}
             <motion.button
               onClick={() => scrollTo('#contact')}
-              className="hidden md:inline-flex items-center gap-2 bg-accent text-bg px-5 py-2 rounded-full text-sm font-bold tracking-wide btn-shine hover:shadow-[0_0_28px_rgba(198,255,0,0.5)] transition-shadow duration-300"
+              className="hidden xl:inline-flex items-center gap-2 bg-accent text-bg px-5 py-2 rounded-full text-sm font-bold tracking-wide btn-shine hover:shadow-[0_0_28px_rgba(198,255,0,0.5)] transition-shadow duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.94 }}
             >
@@ -182,7 +182,7 @@ export default function Navbar() {
             <motion.button
               aria-label="Toggle menu"
               onClick={() => setMenuOpen(v => !v)}
-              className="md:hidden relative w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-white/20 transition-all overflow-hidden"
+              className="xl:hidden relative w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-white/20 transition-all overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.93 }}
             >
@@ -207,7 +207,7 @@ export default function Navbar() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="md:hidden overflow-hidden mobile-menu-glass border-t border-white/[0.06]"
+              className="xl:hidden overflow-hidden mobile-menu-glass border-t border-white/[0.06]"
             >
               <nav className="flex flex-col px-4 py-4 gap-1">
                 {navLinks.map((link, i) => {

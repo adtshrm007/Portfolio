@@ -58,23 +58,30 @@ function ProjectCard({ project, index }) {
           {String(index + 1).padStart(2, '0')}
         </span>
 
-        {/* Top-right: live badge */}
-        <a
-          href={project.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute top-3.5 right-4 z-10 flex items-center gap-1 bg-black/50 backdrop-blur-md border border-white/10 text-white/70 text-[10px] font-medium px-2.5 py-1 rounded-full hover:border-accent/40 hover:text-accent transition-all duration-200"
-        >
-          <span className="w-1 h-1 rounded-full bg-accent animate-pulse" />
-          Live
-        </a>
+        {/* Top-right: live/dev badge */}
+        {project.inDevelopment ? (
+          <span className="absolute top-3.5 right-4 z-10 flex items-center gap-1.5 bg-black/50 backdrop-blur-md border border-orange-500/30 text-orange-400 text-[10px] font-medium px-2.5 py-1 rounded-full">
+            <span className="w-1 h-1 rounded-full bg-orange-500 animate-pulse" />
+            In Development
+          </span>
+        ) : project.live ? (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-3.5 right-4 z-10 flex items-center gap-1.5 bg-black/50 backdrop-blur-md border border-white/10 text-white/70 text-[10px] font-medium px-2.5 py-1 rounded-full hover:border-accent/40 hover:text-accent transition-all duration-200"
+          >
+            <span className="w-1 h-1 rounded-full bg-accent animate-pulse" />
+            Live
+          </a>
+        ) : null}
       </div>
 
       {/* ── Card body ── */}
       <div className="flex flex-col flex-1 p-6">
         {/* Title row */}
         <div className="flex items-start justify-between gap-3 mb-3">
-          <h3 className="font-display font-bold text-[1.05rem] text-white group-hover:text-accent transition-colors duration-300 leading-tight">
+          <h3 className="font-mono font-bold text-[1.05rem] text-white group-hover:text-accent transition-colors duration-300 leading-tight">
             {project.title}
           </h3>
           <a
@@ -106,16 +113,22 @@ function ProjectCard({ project, index }) {
         </div>
 
         {/* CTA Button */}
-        <a
-          href={project.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group/btn w-full flex items-center justify-center gap-2 bg-accent/8 border border-accent/15 rounded-xl py-2.5 text-sm font-semibold text-accent hover:bg-accent hover:text-bg hover:shadow-[0_0_20px_rgba(198,255,0,0.35)] transition-all duration-250"
-        >
-          <ExternalLink size={14} className="group-hover/btn:scale-110 transition-transform" />
-          View Live Demo
-          <ArrowUpRight size={13} className="opacity-60 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-        </a>
+        {project.live ? (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group/btn w-full flex items-center justify-center gap-2 bg-accent/8 border border-accent/15 rounded-xl py-2.5 text-sm font-semibold text-accent hover:bg-accent hover:text-bg hover:shadow-[0_0_20px_rgba(198,255,0,0.35)] transition-all duration-250"
+          >
+            <ExternalLink size={14} className="group-hover/btn:scale-110 transition-transform" />
+            View Live Demo
+            <ArrowUpRight size={13} className="opacity-60 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+          </a>
+        ) : (
+          <div className="w-full flex items-center justify-center gap-2 bg-white/5 border border-white/10 rounded-xl py-2.5 text-sm font-semibold text-gray-text cursor-not-allowed select-none">
+            Coming Soon
+          </div>
+        )}
       </div>
 
       {/* Bottom accent line */}
@@ -145,7 +158,7 @@ export default function Projects() {
           <motion.h2
             initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display font-black text-3xl md:text-4xl xl:text-5xl uppercase leading-tight max-w-3xl"
+            className="font-mono font-bold text-3xl md:text-4xl xl:text-5xl uppercase leading-tight max-w-3xl"
           >
             GLIMPSE OF SOME{' '}
             <span className="neon-text">EXCITING PROJECTS</span>
@@ -169,7 +182,7 @@ export default function Projects() {
           className="mt-10 text-center"
         >
           <a
-            href="https://github.com/ragcoder"
+            href="https://github.com/adtshrm007"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 border border-white/8 bg-white/3 rounded-full px-7 py-3 text-sm text-gray-text hover:border-accent/30 hover:text-accent hover:bg-accent/5 transition-all duration-250"

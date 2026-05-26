@@ -58,11 +58,11 @@ export default function About() {
           <motion.div initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={stagger}>
             <motion.h2
               variants={fadeUp}
-              className="font-display font-black text-[2.5rem] md:text-5xl xl:text-[3.5rem] uppercase leading-[0.9] mb-10"
+              className="font-mono font-bold text-[2.5rem] md:text-5xl xl:text-[3.5rem] uppercase leading-[0.9] mb-10"
             >
-              Driven By{' '}<span className="neon-text">Code.</span>
+              DRIVEN BY{' '}<span className="neon-text">PURPOSE.</span>
               <br />
-              Fueled By{' '}<span className="text-white">Craft.</span>
+              BUILT FOR{' '}<span className="text-white">PEOPLE.</span>
             </motion.h2>
 
             {/* ── Stats grid ── */}
@@ -75,7 +75,7 @@ export default function About() {
                 >
                   {stat.value !== undefined ? (
                     <>
-                      <div className="font-display font-black text-[2.2rem] leading-none mb-1">
+                      <div className="font-mono font-bold text-[2.2rem] leading-none mb-1">
                         <span className="neon-text">
                           <Counter end={stat.value} suffix={stat.suffix} trigger={isInView} />
                         </span>
@@ -108,8 +108,8 @@ export default function About() {
           {/* ── RIGHT ── */}
           <motion.div initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={stagger} className="space-y-5">
             {[
-              <>I started my development journey in 2025 with curiosity for web technologies and quickly became passionate about creating modern digital experiences. Since then, I’ve been consistently learning and building projects focused on <span className="text-accent font-medium">frontend engineering, MERN stack development, real-time systems,</span> and AI-powered applications.</>,
-              <>I enjoy turning ideas into immersive user experiences through clean architecture, modern UI/UX design, and scalable development practices. My focus is not just writing code, but creating products that feel <span className="text-white font-medium">polished, interactive, and meaningful.</span></>,
+              <>Code is just a tool. The real magic happens when you use it to <span className="text-accent font-medium">improve lives, streamline workflows, and foster human connection.</span></>,
+              <>I focus on empathy-driven development. By understanding core user needs, I build solutions that are not just technically sound—but <span className="text-white font-medium">meaningful, accessible, and truly impactful.</span></>,
             ].map((para, i) => (
               <motion.p key={i} variants={fadeUp} className="text-[#6b7280] text-base md:text-[1.05rem] leading-[1.8]">
                 {para}
@@ -117,14 +117,14 @@ export default function About() {
             ))}
 
             <motion.div variants={fadeUp} className="pt-2 pb-2">
-              <h3 className="text-white font-semibold mb-3">Currently, I’m:</h3>
+              <h3 className="text-white font-semibold mb-3">Core Objectives:</h3>
               <ul className="space-y-2 text-[#6b7280] text-sm md:text-base">
                 {[
-                  'Building full stack MERN applications',
-                  'Exploring AI integrations and SaaS architecture',
-                  'Learning advanced frontend engineering',
-                  'Contributing to open source projects',
-                  'Open to internships and freelance opportunities'
+                  'Empowering communities through tech',
+                  'Building accessible digital experiences',
+                  'Simplifying complex problems',
+                  'Driving purpose-built open-source',
+                  'Making a measurable difference'
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2">
                     <span className="text-accent mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_#C6FF00] flex-shrink-0" />
@@ -141,7 +141,7 @@ export default function About() {
                 whileHover={{ x: 6 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
-                Let's build something great
+                Initiate collaboration
                 <span className="w-8 h-px bg-accent shadow-[0_0_6px_rgba(198,255,0,0.5)] group-hover:w-14 transition-all duration-400" />
                 <span>→</span>
               </motion.button>

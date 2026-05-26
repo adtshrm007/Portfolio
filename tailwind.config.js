@@ -19,8 +19,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Outfit', 'system-ui', 'sans-serif'],
-        display: ['Syne', 'sans-serif'],
+        sans: ['"JetBrains Mono"', 'monospace'],
+        display: ['"JetBrains Mono"', 'monospace'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       animation: {

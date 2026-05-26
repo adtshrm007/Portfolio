@@ -1,14 +1,15 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Mail, ArrowUpRight } from 'lucide-react';
-import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { social } from '../../data/portfolioData';
 
 const links = [
   { icon: Mail,        label: 'Email',       sub: social.email,                href: `mailto:${social.email}`, color: 'group-hover:border-accent/30 group-hover:bg-accent/5 group-hover:text-accent' },
   { icon: FaGithub,    label: 'GitHub',      sub: '@ragcoder',                 href: social.github,            color: 'group-hover:border-white/20 group-hover:bg-white/5 group-hover:text-white'  },
   { icon: FaLinkedinIn,label: 'LinkedIn',    sub: 'linkedin.com/in/ragcoder',  href: social.linkedin,          color: 'group-hover:border-blue-500/30 group-hover:bg-blue-500/5 group-hover:text-blue-400' },
-  { icon: FaTwitter,   label: 'Twitter / X', sub: '@ragcoder',                 href: social.twitter,           color: 'group-hover:border-sky-500/30 group-hover:bg-sky-500/5 group-hover:text-sky-400'   },
+  { icon: FaXTwitter,   label: 'X (Twitter)', sub: '@ragcoder',                 href: social.twitter,           color: 'group-hover:border-white/30 group-hover:bg-white/5 group-hover:text-white'   },
 ];
 
 export default function Contact() {
@@ -48,18 +49,17 @@ export default function Contact() {
               transition={{ delay: 0.1 }}
               className="font-mono text-[11px] text-gray-text tracking-[0.25em] uppercase mb-5"
             >
-              Available for freelance & full-time
+              Let's create positive change
             </motion.p>
 
             <motion.h2
               initial={{ opacity: 0, y: 40 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.85, delay: 0.15 }}
-              className="font-display font-black text-[3rem] md:text-[4rem] xl:text-[4.75rem] uppercase leading-[0.88] mb-8"
+              className="font-mono font-bold text-[3rem] md:text-[4rem] xl:text-[4.75rem] uppercase leading-[0.88] mb-8"
             >
-              LET'S
+              BUILD REAL
               <br />
-              WORK{' '}
-              <span className="neon-text">TOGETHER</span>
+              <span className="neon-text">VALUE</span>
               <span className="text-accent">.</span>
             </motion.h2>
 
@@ -68,8 +68,7 @@ export default function Contact() {
               transition={{ delay: 0.3 }}
               className="text-[#6b7280] text-base md:text-[1.05rem] leading-[1.75] max-w-md mb-10"
             >
-              Whether you have a project in mind, want to collaborate, or just want to say
-              hello — my inbox is always open. Let's create something amazing.
+              Ready to build technology that matters? My inbox is open. Let's create something meaningful together.
             </motion.p>
 
             <motion.a
@@ -80,7 +79,7 @@ export default function Contact() {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
             >
-              <span>Start a Conversation</span>
+              <span>Initialize Transmission</span>
               <motion.span
                 className="w-8 h-8 rounded-full bg-bg/20 flex items-center justify-center"
                 animate={{ x: [0, 3, 0] }}
@@ -172,7 +171,7 @@ export default function Contact() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Send Message
+                Execute Transmission
               </motion.button>
             </form>
           </motion.div>

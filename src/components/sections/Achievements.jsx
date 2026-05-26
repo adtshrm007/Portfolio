@@ -94,7 +94,7 @@ export default function Achievements() {
           <motion.h2
             initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display font-black text-4xl md:text-5xl xl:text-6xl uppercase leading-[0.95] max-w-4xl"
+            className="font-mono font-bold text-4xl md:text-5xl xl:text-6xl uppercase leading-[0.95] max-w-4xl"
           >
             I TAKE PRIDE IN MY<br />
             <span className="neon-text">ACCOMPLISHMENTS</span>

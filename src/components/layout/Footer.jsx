@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { Heart, Mail } from 'lucide-react';
-import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { social } from '../../data/portfolioData';
 
 const socials = [
   { icon: FaGithub,    href: social.github,            label: 'GitHub'   },
   { icon: FaLinkedinIn, href: social.linkedin,          label: 'LinkedIn' },
-  { icon: FaTwitter,   href: social.twitter,            label: 'Twitter'  },
+  { icon: FaXTwitter,   href: social.twitter,            label: 'X (Twitter)'  },
   { icon: Mail,        href: `mailto:${social.email}`,  label: 'Email'    },
 ];
 

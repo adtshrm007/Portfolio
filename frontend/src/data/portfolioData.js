@@ -9,6 +9,7 @@ export const navLinks = [
   { label: 'Projects', href: '#projects' },
   { label: 'Journey', href: '#journey' },
   { label: 'Achievements', href: '#achievements' },
+  { label: 'Reviews', href: '#reviews' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -160,3 +161,20 @@ export const social = {
   linkedin: 'https://www.linkedin.com/in/aditya-sharma-836856315/',
   twitter: 'https://x.com/ADTSHRM007',
 };
+
+export const reviews = [
+  // {
+  //   id: 1,
+  //   name: 'Sarah Jenkins',
+  //   role: 'Product Manager @ TechFlow',
+  //   content: 'Aditya is an exceptional full-stack engineer. His ability to architect scalable solutions while maintaining a pixel-perfect UI is truly impressive. He delivered our real-time dashboard ahead of schedule.',
+  //   rating: 5,
+  // },
+  // {
+  //   id: 2,
+  //   name: 'Marcus Chen',
+  //   role: 'Startup Founder',
+  //   content: 'Working with Aditya was a game-changer for our MVP. He didn\'t just write code; he provided valuable architectural insights that made the final product far more robust and user-friendly.',
+  //   rating: 5,
+  // },
+];

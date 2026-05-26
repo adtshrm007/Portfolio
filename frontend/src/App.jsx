@@ -16,6 +16,7 @@ import Skills from './components/sections/Skills';
 import Projects from './components/sections/Projects';
 import Journey from './components/sections/Journey';
 import Achievements from './components/sections/Achievements';
+import Reviews from './components/sections/Reviews';
 import Contact from './components/sections/Contact';
 
 export default function App() {
@@ -53,6 +54,7 @@ export default function App() {
             <Projects />
             <Journey />
             <Achievements />
+            <Reviews />
             <Contact />
           </main>
 

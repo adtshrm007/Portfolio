@@ -1,6 +1,6 @@
 export const getReviews = async () => {
   try {
-    const res = await fetch("http://localhost:3000/review/getReviews");
+    const res = await fetch("https://portfolio-1-m1qy.onrender.com/review/getReviews");
     const data = await res.json();
     return data;
   } catch (error) {
@@ -11,7 +11,7 @@ export const getReviews = async () => {
 
 export const addReview = async ({ name, role, content, rating }) => {
   try {
-    const res = await fetch("http://localhost:3000/review/addReview", {
+    const res = await fetch("https://portfolio-1-m1qy.onrender.com/review/addReview", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

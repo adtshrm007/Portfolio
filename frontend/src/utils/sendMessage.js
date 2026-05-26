@@ -3,7 +3,7 @@ import axios from "axios";
 export const sendMessage = async ({ name, email, message }) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/message/sendMessage",
+      "https://portfolio-1-m1qy.onrender.com/message/sendMessage",
       {
         name,
         email,

@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { stats } from '../../data/portfolioData';
+import TiltCard from '../ui/TiltCard';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 36 },
@@ -68,23 +69,25 @@ export default function About() {
             {/* ── Stats grid ── */}
             <motion.div variants={stagger} className="grid grid-cols-2 gap-3">
               {stats.map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  variants={fadeUp}
-                  className={`stat-card rounded-2xl p-5 cursor-none flex flex-col justify-center ${stat.value === undefined ? 'items-center text-center' : ''}`}
-                >
-                  {stat.value !== undefined ? (
-                    <>
-                      <div className="font-mono font-bold text-[2.2rem] leading-none mb-1">
-                        <span className="neon-text">
-                          <Counter end={stat.value} suffix={stat.suffix} trigger={isInView} />
-                        </span>
-                      </div>
-                      <div className="text-[#6b7280] text-xs tracking-wide uppercase font-medium">{stat.label}</div>
-                    </>
-                  ) : (
-                    <div className="text-white text-sm tracking-wide uppercase font-bold neon-text">{stat.label}</div>
-                  )}
+                <motion.div key={stat.label} variants={fadeUp}>
+                  <TiltCard className="h-full">
+                    <div
+                      className={`h-full stat-card rounded-2xl p-5 cursor-none flex flex-col justify-center ${stat.value === undefined ? 'items-center text-center' : ''}`}
+                    >
+                      {stat.value !== undefined ? (
+                        <>
+                          <div className="font-mono font-bold text-[2.2rem] leading-none mb-1">
+                            <span className="neon-text">
+                              <Counter end={stat.value} suffix={stat.suffix} trigger={isInView} />
+                            </span>
+                          </div>
+                          <div className="text-[#6b7280] text-xs tracking-wide uppercase font-medium">{stat.label}</div>
+                        </>
+                      ) : (
+                        <div className="text-white text-sm tracking-wide uppercase font-bold neon-text">{stat.label}</div>
+                      )}
+                    </div>
+                  </TiltCard>
                 </motion.div>
               ))}
             </motion.div>

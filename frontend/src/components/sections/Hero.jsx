@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { FaGithub, FaLinkedinIn, FaReact, FaNodeJs } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { SiMongodb, SiVite, SiTailwindcss, SiOpenai, SiSocketdotio, SiTypescript, SiGreensock, SiNextdotjs, SiRedux, SiExpress, SiWebrtc, SiFramer, SiFirebase } from "react-icons/si";
 import { social } from "../../data/portfolioData";
 import heroPortrait from "../../assets/Profile Photo.png";
+import Magnetic from "../ui/Magnetic";
 
 /* ── Tech marquee items ── */
 const baseMarqueeItems = [
@@ -45,9 +47,11 @@ const containerV = {
 export default function Hero() {
   const headingRef = useRef(null);
 
-  /* GSAP character reveal */
+  /* GSAP character reveal & Parallax */
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
+      // Character reveal
       gsap.fromTo(
         ".hero-char",
         { y: 110, opacity: 0, rotateX: -35 },
@@ -61,6 +65,29 @@ export default function Hero() {
           delay: 0.25,
         },
       );
+
+      // Parallax blobs
+      gsap.to(".parallax-bg-1", {
+        y: 200,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#home",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      gsap.to(".parallax-bg-2", {
+        y: -150,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#home",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
     });
     return () => ctx.revert();
   }, []);
@@ -78,9 +105,9 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center pt-20 overflow-hidden"
     >
       {/* ── Background glows ── */}
-      <div className="blob blob-green w-[600px] h-[600px] -top-60 -left-40 opacity-[0.12]" />
-      <div className="blob blob-green w-[500px] h-[500px] top-1/2 -right-60 opacity-[0.08]" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-accent/[0.03] blur-[160px] pointer-events-none" />
+      <div className="parallax-bg-1 blob blob-green w-[600px] h-[600px] -top-60 -left-40 opacity-[0.12]" />
+      <div className="parallax-bg-2 blob blob-green w-[500px] h-[500px] top-1/2 -right-60 opacity-[0.08]" />
+      <div className="parallax-bg-1 absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-accent/[0.03] blur-[160px] pointer-events-none" />
 
       {/* ── Main Content ── */}
       <div className="flex-1 w-full max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-6 items-center py-14 md:py-16">
@@ -138,35 +165,39 @@ export default function Hero() {
 
           {/* ── CTA Buttons ── */}
           <motion.div variants={itemV} className="flex flex-wrap gap-3 mb-10">
-            <motion.button
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="group relative flex items-center gap-2 bg-accent text-bg px-7 py-3.5 rounded-full font-bold text-sm tracking-wide overflow-hidden btn-shine hover:shadow-[0_0_30px_rgba(198,255,0,0.5)] transition-shadow duration-300"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-            >
-              <span className="relative z-10">Hire Me</span>
-              <ArrowRight
-                size={15}
-                className="relative z-10 group-hover:translate-x-1 transition-transform duration-200"
-              />
-            </motion.button>
+            <Magnetic>
+              <motion.button
+                onClick={() =>
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="group relative flex items-center gap-2 bg-accent text-bg px-7 py-3.5 rounded-full font-bold text-sm tracking-wide overflow-hidden btn-shine hover:shadow-[0_0_30px_rgba(198,255,0,0.5)] transition-shadow duration-300"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+              >
+                <span className="relative z-10">Hire Me</span>
+                <ArrowRight
+                  size={15}
+                  className="relative z-10 group-hover:translate-x-1 transition-transform duration-200"
+                />
+              </motion.button>
+            </Magnetic>
 
-            <motion.button
-              onClick={() =>
-                document
-                  .getElementById("projects")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="group flex items-center gap-2 border border-white/15 bg-white/3 text-white px-7 py-3.5 rounded-full font-semibold text-sm tracking-wide hover:border-accent/40 hover:text-accent hover:bg-accent/5 transition-all duration-300"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-            >
-              View Projects
-            </motion.button>
+            <Magnetic>
+              <motion.button
+                onClick={() =>
+                  document
+                    .getElementById("projects")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="group flex items-center gap-2 border border-white/15 bg-white/3 text-white px-7 py-3.5 rounded-full font-semibold text-sm tracking-wide hover:border-accent/40 hover:text-accent hover:bg-accent/5 transition-all duration-300"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+              >
+                View Projects
+              </motion.button>
+            </Magnetic>
           </motion.div>
 
           {/* ── Social row ── */}
@@ -185,17 +216,18 @@ export default function Hero() {
                 { icon: FaXTwitter, href: social.twitter, label: "X (Twitter)" },
                 { icon: Mail, href: `mailto:${social.email}`, label: "Email" },
               ].map(({ icon: Icon, href, label }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-9 h-9 rounded-xl border border-white/8 bg-white/3 flex items-center justify-center text-gray-text hover:border-accent/50 hover:text-accent hover:bg-accent/8 transition-all duration-200"
-                  whileHover={{ y: -3, scale: 1.05 }}
-                >
-                  <Icon size={15} />
-                </motion.a>
+                <Magnetic key={label}>
+                  <motion.a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-9 h-9 rounded-xl border border-white/8 bg-white/3 flex items-center justify-center text-gray-text hover:border-accent/50 hover:text-accent hover:bg-accent/8 transition-all duration-200"
+                    whileHover={{ y: -3, scale: 1.05 }}
+                  >
+                    <Icon size={15} />
+                  </motion.a>
+                </Magnetic>
               ))}
             </div>
           </motion.div>

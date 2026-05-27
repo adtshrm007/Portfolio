@@ -1,52 +1,36 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 const sendEmail = async ({ name, email, message }) => {
   try {
+    console.log("Email SENDING via Resend......");
 
-    console.log("Email SENDING......");
+    // Initialize Resend with the API key from environment variables
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
-    console.log(process.env.EMAIL_USER);
-    console.log(process.env.EMAIL_PASS);
-
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-
-      auth: {
-        user: String(process.env.EMAIL_USER),
-        pass: String(process.env.EMAIL_PASS),
-      },
-    });
-
-    await transporter.verify();
-
-    console.log("Transporter Ready");
-
-    const info = await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-
-      to: process.env.EMAIL_USER,
-
+    const { data, error } = await resend.emails.send({
+      from: "onboarding@resend.dev", // Resend default for testing, no domain verification needed
+      to: process.env.EMAIL_USER, // Sending it to your own email address
       subject: `New Portfolio Message from ${name}`,
-
       html: `
         <h2>New Contact Form Message</h2>
-
         <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Email (Reply to):</strong> ${email}</p>
         <p><strong>Message:</strong> ${message}</p>
       `,
     });
 
-    console.log("EMAIL SENT");
-    console.log(info);
+    if (error) {
+      console.error("RESEND API ERROR:");
+      console.error(error);
+      throw error;
+    }
+
+    console.log("EMAIL SENT SUCCESSFULLY via Resend");
+    console.log(data);
 
   } catch (error) {
-
-    console.log("NODEMAILER ERROR:");
-    console.log(error);
-
+    console.error("EMAIL SENDING FAILED:");
+    console.error(error);
     throw error;
   }
 };

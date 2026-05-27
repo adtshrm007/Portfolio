@@ -29,6 +29,7 @@ export const sendMessage = async (req, res) => {
       message: "Message sent successfully",
     });
   } catch (error) {
+    console.error("Message Controller Error:", error);
     return res.status(500).json({
       message: "Server Error",
     });

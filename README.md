@@ -1,61 +1,60 @@
-# 🚀 RagCoder | Modern Full-Stack Portfolio
+# 🚀 Engineering Portfolio | Aditya Sharma
 
-Welcome to the source code of my personal portfolio website! This project is a highly dynamic, visually immersive web experience built to showcase my journey, projects, and skills as a Full-Stack Developer.
+Welcome to the source code of my **Engineering Portfolio**. This platform was engineered from the ground up to transcend the traditional "design showcase" and instead serve as a comprehensive, recruiter-focused testament to my capabilities as a Full-Stack Software Engineer.
 
-![Portfolio Preview](https://via.placeholder.com/1200x600?text=RagCoder+Portfolio) <!-- Replace with an actual screenshot of your portfolio -->
+It combines production-grade system design insights, quantitative engineering metrics, and deep-dive case studies with a premium, glassmorphic aesthetic.
 
-## ✨ Features
+## ✨ Core Engineering Features
 
-### Frontend (User Interface)
-- **Modern Glassmorphism**: Sleek glassy cards with background blurs.
-- **Dynamic Neon Accents**: Vibrant glowing borders, shadows, and interactive hover states.
-- **Premium Typography**: Utilizes modern Google Fonts (`Outfit` and `Syne`).
-- **Smooth Animations**: Integrated with Framer Motion and GSAP for scroll reveals, character text animations, and micro-interactions.
-- **Custom Cursor & Scrollbar**: Custom visual elements to enhance the user experience.
-- **Fully Responsive**: Flawless design from desktop monitors down to mobile devices.
+### 📊 Quantitative Metrics & Analytics
+- **Live Engineering Metrics**: Animated counters showcasing production projects, GitHub repositories, commits, and DSA problems solved.
+- **Dynamic Skills Matrix**: A highly structured breakdown of proficiencies across Frontend, Backend, Databases, DevOps, and AI Integrations.
 
-### Backend (API & Services)
-- **Live Contact Form**: Seamlessly send messages directly from the portfolio to the owner's email using the **Resend API**.
-- **Dynamic Reviews System**: Fetch and display real user reviews, backed by a MongoDB database.
-- **Secure CORS Policies**: Ready for production deployment with proper Express routing.
+### 🏗️ System Design & Architecture
+- **Interactive Architecture Diagrams**: Custom Framer Motion-powered visualizers that map out system dependencies and data flow for full-stack applications.
+- **Deep-Dive Case Studies**: Comprehensive breakdowns of featured projects (like *Requesta* and *UpSkillr*), detailing the problem space, architectural decisions, technical challenges, and real-world impact.
+- **"Currently Building" Lab**: Live progress tracking of active projects currently in development.
+
+### 💼 Recruiter-Optimized Conversion
+- **Targeted CTAs**: Direct "Hire Me" pipelines tailored specifically for Internships, Freelance, and Full-Time Opportunities.
+- **Dynamic Social Proof & Trust**: Integrates a live, full-stack review system backed by MongoDB, alongside static open-source contribution metrics.
+- **GitHub Integration**: Direct display of developer credibility (commits, PRs merged, top languages).
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Frontend:**
-- React.js + Vite
-- Tailwind CSS + Custom Vanilla CSS (for advanced glows)
-- Framer Motion & GSAP (Animations)
-- Axios (HTTP Client)
-- Lucide React & React Icons
+**Frontend Architecture:**
+- **React.js + Vite**: High-performance rendering and lightning-fast HMR.
+- **Tailwind CSS**: Strict adherence to a design system utilizing custom design tokens (e.g., `bg-bg`, `text-gray-text`, `accent`).
+- **Framer Motion & GSAP**: Complex scroll orchestration, micro-animations, and dynamic layout transitions.
+- **Lucide React & React Icons**: Lightweight, scalable iconography (including GitHub Octicons).
 
-**Backend:**
-- Node.js & Express.js
-- MongoDB + Mongoose (Database)
-- Resend API (Email Delivery)
-- dotenv & cors
+**Backend Infrastructure:**
+- **Node.js & Express.js**: RESTful API endpoints.
+- **MongoDB + Mongoose**: Document database for storing dynamic social proof and reviews.
+- **Resend API**: Reliable transactional email delivery for contact forms.
 
 ---
 
-## 💻 Getting Started (Local Development)
+## 💻 Local Development Environment
 
-Because this is a full-stack application, you need to run both the frontend and backend servers simultaneously.
+This is a decoupled full-stack application. You will need to run both the client and server environments.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/ragcoder/portfolio-website.git
+git clone https://github.com/adtshrm007/portfolio-website.git
 cd "Profile Website"
 ```
 
-### 2. Backend Setup
-Navigate to the backend directory, install dependencies, and set up your environment variables.
+### 2. Backend Initialization
+Navigate to the backend directory, install dependencies, and configure environment variables.
 ```bash
 cd backend
 npm install
 ```
 
-Create a `.env` file inside the `/backend` directory and add the following keys:
+Create a `.env` file in `/backend`:
 ```env
 PORT=3000
 MONGO_URI=your_mongodb_connection_string
@@ -63,45 +62,46 @@ EMAIL_USER=your_email@gmail.com
 RESEND_API_KEY=your_resend_api_key
 ```
 
-Start the backend server:
+Start the backend daemon:
 ```bash
 npm run dev
 ```
 
-### 3. Frontend Setup
-Open a new terminal window, navigate to the frontend directory, install dependencies, and start the app.
+### 3. Frontend Initialization
+In a new terminal instance, navigate to the frontend directory.
 ```bash
 cd frontend
 npm install
 ```
 
-Create a `.env` file inside the `/frontend` directory and add the backend URL:
+Create a `.env` file in `/frontend`:
 ```env
 VITE_API_URL=http://localhost:3000
 ```
 
-Start the frontend development server:
+Start the Vite development server:
 ```bash
 npm run dev
 ```
-Open your browser and visit `http://localhost:5173` to view the website.
+The application will be available at `http://localhost:5173`.
 
 ---
 
-## 🚀 Production Deployment Notes
+## 🚀 Deployment Architecture
 
-When deploying this project to production (e.g., Render, Vercel, Netlify):
-1. **Frontend**: Ensure the `VITE_API_URL` environment variable is set to your live backend URL (e.g., `https://my-backend.onrender.com`).
-2. **Backend**: Ensure all backend `.env` variables are properly configured in your hosting provider's dashboard. 
-3. **MongoDB**: Make sure to whitelist your production server's IP address (or use `0.0.0.0/0`) in MongoDB Atlas Network Access.
-
----
-
-## 📬 Contact
-
-- **Aditya (RagCoder)**
-- **Email**: adityasharma28112006@gmail.com
-- **GitHub**: [ragcoder](https://github.com/ragcoder)
+When deploying to production (e.g., Render, Vercel, AWS):
+1. **Frontend**: Inject the production backend URL into `VITE_API_URL`.
+2. **Backend**: Ensure all environment variables are securely injected via your hosting provider's secrets management.
+3. **Database Security**: Whitelist your production server IPs in MongoDB Atlas Network Access.
 
 ---
-*Built with passion and purpose by Aditya.*
+
+## 📬 Connect With Me
+
+- **Aditya Sharma**
+- **Email**: adtshrm277@gmail.com
+- **GitHub**: [@adtshrm007](https://github.com/adtshrm007)
+- **LinkedIn**: [Aditya Sharma](https://www.linkedin.com/in/aditya-sharma-836856315/)
+
+---
+*Engineered to build the future, one system at a time.*

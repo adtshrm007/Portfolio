@@ -119,7 +119,7 @@ export default function Contact() {
               transition={{ delay: 0.1 }}
               className="font-mono text-[11px] text-gray-text tracking-[0.25em] uppercase mb-5"
             >
-              Let's create positive change
+              Let's Build Something Amazing
             </motion.p>
 
             <motion.h2
@@ -128,21 +128,33 @@ export default function Contact() {
               transition={{ duration: 0.85, delay: 0.15 }}
               className="font-mono font-bold text-[3rem] md:text-[4rem] xl:text-[4.75rem] uppercase leading-[0.88] mb-8"
             >
-              BUILD REAL
+              HIRE
               <br />
-              <span className="neon-text">VALUE</span>
-              <span className="text-accent">.</span>
+              <span className="neon-text">ENGINEERING</span>
+              <br />
+              <span className="text-accent">TALENT.</span>
             </motion.h2>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
-              className="text-[#6b7280] text-base md:text-[1.05rem] leading-[1.75] max-w-md mb-10"
+              className="mb-10 space-y-4"
             >
-              Ready to build technology that matters? My inbox is open. Let's
-              create something meaningful together.
-            </motion.p>
+              <p className="text-[#6b7280] text-base md:text-[1.05rem] leading-[1.75] max-w-md">
+                Currently open for new opportunities. I am actively looking to bring my engineering expertise to teams building ambitious products.
+              </p>
+              
+              <div>
+                <p className="text-white text-sm font-semibold mb-2">Available For:</p>
+                <ul className="text-[#6b7280] text-sm space-y-1">
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Internships</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Freelance Projects</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Full-Time Opportunities</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Open Source Collaboration</li>
+                </ul>
+              </div>
+            </motion.div>
 
             <motion.a
               href={`mailto:${social.email}`}

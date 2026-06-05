@@ -12,12 +12,14 @@ import Loader from './components/ui/Loader';
 
 // Sections
 import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Skills from './components/sections/Skills';
+import EngineeringMetrics from './components/sections/EngineeringMetrics';
+import FeaturedProjects from './components/sections/FeaturedProjects';
+import SystemDesign from './components/sections/SystemDesign';
+import CurrentlyBuilding from './components/sections/CurrentlyBuilding';
+import SkillsMatrix from './components/sections/SkillsMatrix';
 import Projects from './components/sections/Projects';
-import Journey from './components/sections/Journey';
-import Achievements from './components/sections/Achievements';
-import Reviews from './components/sections/Reviews';
+import SocialProof from './components/sections/SocialProof';
+import RecruiterCTA from './components/sections/RecruiterCTA';
 import Contact from './components/sections/Contact';
 
 export default function App() {
@@ -55,12 +57,14 @@ export default function App() {
 
             <main>
               <Hero />
-              <About />
-              <Skills />
+              <EngineeringMetrics />
+              <FeaturedProjects />
+              <SystemDesign />
+              <CurrentlyBuilding />
+              <SkillsMatrix />
               <Projects />
-              <Journey />
-              <Achievements />
-              <Reviews />
+              <SocialProof />
+              <RecruiterCTA />
               <Contact />
             </main>
 

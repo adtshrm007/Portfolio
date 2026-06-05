@@ -1,55 +1,76 @@
 // ============================================================
-// PORTFOLIO DATA — RagCoder
+// PORTFOLIO DATA — Engineering Showcase
 // ============================================================
+
+import requestaImg from '../assets/Requesta_PIcture.png';
 
 export const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
+  { label: 'Metrics', href: '#metrics' },
+  { label: 'Case Studies', href: '#case-studies' },
+  { label: 'System Design', href: '#system-design' },
+  { label: 'Lab', href: '#lab' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Journey', href: '#journey' },
-  { label: 'Achievements', href: '#achievements' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Trust', href: '#trust' },
+  { label: 'Hire Me', href: '#contact' },
 ];
 
-export const skills = [
+export const metrics = [
+  { value: 5, suffix: '+', label: 'Production Projects' },
+  { value: 20, suffix: '+', label: 'Technologies' },
+  { value: 15, suffix: '+', label: 'GitHub Repositories' },
+  { value: 200, suffix: '+', label: 'DSA Problems' },
+  { value: 400, suffix: '+', label: 'Commits in 2026' },
+  { value: 3, suffix: '+', label: 'Years Programming' }
+];
+
+export const skillsMatrix = [
   {
-    id: 'frontend',
-    title: 'Frontend Architecture',
-    description: 'Engineering high-performance, pixel-perfect UIs with React, Next.js, and modern CSS ecosystems.',
-    icon: 'Monitor',
+    category: 'Frontend',
+    skills: [
+      { name: 'React', proficiency: 95 },
+      { name: 'JavaScript / TypeScript', proficiency: 90 },
+      { name: 'Tailwind CSS', proficiency: 95 },
+      { name: 'Framer Motion & GSAP', proficiency: 85 }
+    ]
   },
   {
-    id: 'backend',
-    title: 'Backend Infrastructure',
-    description: 'Architecting resilient REST APIs and scalable server-side microservices with Node.js and Express.',
-    icon: 'Server',
+    category: 'Backend',
+    skills: [
+      { name: 'Node.js', proficiency: 85 },
+      { name: 'Express.js', proficiency: 85 },
+      { name: 'REST APIs', proficiency: 90 },
+      { name: 'WebSockets / Socket.io', proficiency: 80 }
+    ]
   },
   {
-    id: 'uiux',
-    title: 'UX/UI Engineering',
-    description: 'Designing immersive, user-centric interfaces that seamlessly blend aesthetics with frictionless usability.',
-    icon: 'Layers',
+    category: 'Databases',
+    skills: [
+      { name: 'MongoDB', proficiency: 85 },
+      { name: 'Mongoose (ODM)', proficiency: 85 },
+      { name: 'Redis (Caching)', proficiency: 60 },
+      { name: 'Aggregation Pipelines', proficiency: 75 }
+    ]
   },
   {
-    id: 'react',
-    title: 'Full Stack MERN',
-    description: 'Deploying end-to-end scalable architectures utilizing the full power of MongoDB, Express, React, and Node.',
-    icon: 'Atom',
+    category: 'DevOps & Architecture',
+    skills: [
+      { name: 'System Design', proficiency: 80 },
+      { name: 'Git & GitHub Workflows', proficiency: 90 },
+      { name: 'Vercel / Render Deployment', proficiency: 85 },
+      { name: 'JWT Authentication', proficiency: 90 }
+    ]
   },
   {
-    id: 'ai',
-    title: 'AI Integrations',
-    description: 'Augmenting applications with cutting-edge LLMs and OpenAI APIs to drive intelligent user experiences.',
-    icon: 'Brain',
-  },
-  {
-    id: 'realtime',
-    title: 'Real-Time Systems',
-    description: 'Engineering live collaborative environments utilizing WebSockets, Socket.io, and low-latency databases.',
-    icon: 'Zap',
-  },
+    category: 'AI & Emerging',
+    skills: [
+      { name: 'OpenAI API', proficiency: 85 },
+      { name: 'Gemini AI', proficiency: 80 },
+      { name: 'RAG Architecture', proficiency: 70 },
+      { name: 'Prompt Engineering', proficiency: 85 }
+    ]
+  }
 ];
 
 export const projects = [
@@ -69,7 +90,7 @@ export const projects = [
     title: 'Requesta',
     description:
       'Requesta is an AI-augmented institutional workflow platform designed to streamline document requests, approvals, and administrative operations through intelligent validation systems, modern dashboards, and immersive user experiences.',
-    image: '/images/requesta.png',
+    image: requestaImg,
     tags: ['React', 'Express.js', 'MongoDB','Node.js' ,'REST','Mongoose'],
     github: 'https://github.com/adtshrm007/Requesta-Server',
     live: 'https://requesta-client.vercel.app/',
@@ -86,74 +107,107 @@ export const projects = [
   },
 ];
 
-export const journeyItems = [
+export const caseStudies = [
   {
-    id: 'start-web',
-    title: 'Initialized Engineering Journey',
-    description: 'Mastered the foundational triad of HTML, CSS, and JavaScript, laying the groundwork for modern frontend architecture.',
-    year: '2025',
-    icon: 'Monitor',
-  },
-  {
-    id: 'mern-stack',
-    title: 'Mastered Full Stack Ecosystems',
-    description: 'Engineered robust architectures utilizing React, Node.js, and MongoDB for scalable full stack deployment.',
-    year: '2025',
-    icon: 'Layers',
-  },
-  {
-    id: 'realtime-apps',
-    title: 'Architected Real-Time Systems',
-    description: 'Deployed low-latency, live collaborative environments leveraging WebSockets, Socket.io, and WebRTC protocols.',
-    year: '2025',
-    icon: 'Wifi',
-  },
-  {
-    id: 'vscode-theme',
-    title: 'Deployed Open Source Tooling',
-    description: 'Engineered and published "RagCoder Dark," a premium VS Code theme optimized for developer productivity.',
-    year: '2025',
-    icon: 'Package',
-  },
-  {
-    id: 'gssoc',
-    title: 'Open Source Contributor (GSSoC)',
-    description: 'Selected to drive innovation and architect solutions within the GirlScript Summer of Code ecosystem.',
-    year: '2026',
-    icon: 'GitBranch',
-  },
-  {
-    id: 'ai-saas',
-    title: 'AI & SaaS Platform Engineering',
-    description: 'Pioneering intelligent application architectures, focusing on LLM integrations and scalable SaaS infrastructure.',
-    year: '2026',
-    icon: 'Brain',
-  },
-  {
-    id: 'freelance',
-    title: 'Independent Digital Craftsman',
-    description: 'Collaborating with forward-thinking clients to engineer premium, high-impact digital products and web experiences.',
-    year: '2026',
-    icon: 'Code2',
-  },
+    id: 'requesta',
+    title: 'Requesta',
+    subtitle: 'AI-Powered Institutional Workflow Platform',
+    featured: true,
+    overview: 'Requesta is a robust B2B SaaS designed to digitize and automate institutional document workflows. It replaces manual paper trails with an intelligent, role-based approval system.',
+    problem: 'Institutions suffer from slow, untrackable, and error-prone manual document requests, leading to administrative bottlenecks.',
+    architecture: ['React (Frontend)', 'Express.js (API Gateway)', 'MongoDB (Data Layer)', 'Open Router API (Decision Engine)', 'Nodemailer (Notifications)'],
+    techStack: ['React', 'Express.js', 'MongoDB', 'JWT', 'Open Router API', 'Tailwind'],
+    features: [
+      'Multi-tier Role-Based Access Control (RBAC)',
+      'Secure JWT-based Authentication',
+      'Intelligent Document Analysis via Open Router API',
+      'MongoDB Aggregation Pipelines for Analytics',
+      'Automated Email Workflows'
+    ],
+    challenges: 'Designing a secure multi-tenant architecture with complex role hierarchies and dynamic approval chains.',
+    solutions: 'Implemented a robust JWT strategy with refresh tokens and designed a flexible MongoDB schema with referenced approval paths.',
+    impact: 'Reduced average document processing time by 75% and provided real-time visibility into workflow bottlenecks.',
+    image: requestaImg,
+    github: 'https://github.com/adtshrm007/Requesta-Server',
+    live: 'https://requesta-client.vercel.app/'
+  }
 ];
 
-export const achievementsList = [
-  'Selected Contributor at GirlScript Summer of Code (GSSoC)',
-  'Published “RagCoder Dark” VS Code Theme Extension',
-  'Built Multiple Full Stack MERN Applications',
-  'Developed Real-Time Applications Using WebRTC & Socket.io',
-  'Focused on AI-Powered Product Development',
-  'Designed Premium UI/UX Focused Interfaces',
-  'Continuously Learning Modern Web Technologies',
+export const startupLab = {
+  title: 'UpSkillr',
+  subtitle: 'A Skill Exchange Economy Platform',
+  description: 'Building an ambitious peer-to-peer learning ecosystem where developers can exchange skills, mentor each other, and collaborate on projects in real-time.',
+  progress: 45, // percentage
+  status: 'In Active Development',
+  completedFeatures: [
+    'User Authentication & Profiles',
+    'Database Schema Design',
+    'Core UI/UX Architecture'
+  ],
+  upcomingFeatures: [
+    'Skill Exchange Marketplace',
+    'WebRTC Video Sessions',
+    'Credit Economy System',
+    'AI-Powered Mentor Matching',
+    'Real-time Chat & Communities'
+  ]
+};
+
+export const technicalBlogs = [
+  {
+    id: 'jwt-auth',
+    title: 'JWT Authentication Deep Dive: Securing React & Node.js Apps',
+    date: 'May 15, 2026',
+    readTime: '8 min read',
+    tags: ['Security', 'Node.js', 'React']
+  },
+  {
+    id: 'rbac-express',
+    title: 'Building Scalable Role-Based Access Control with Express.js',
+    date: 'April 22, 2026',
+    readTime: '6 min read',
+    tags: ['Architecture', 'Express.js', 'MongoDB']
+  },
+  {
+    id: 'mongo-aggregations',
+    title: 'Unlocking MongoDB Aggregation Pipelines for Dashboard Analytics',
+    date: 'March 10, 2026',
+    readTime: '10 min read',
+    tags: ['Database', 'MongoDB', 'Performance']
+  },
+  {
+    id: 'webrtc-fundamentals',
+    title: 'WebRTC Architecture Fundamentals for Real-Time Video',
+    date: 'Coming Soon',
+    readTime: '--',
+    tags: ['WebRTC', 'Real-Time']
+  }
 ];
 
-export const stats = [
-  { value: 5, suffix: '+', label: 'Projects Built' },
-  { label: 'GSSoC Selected Contributor' },
-  { label: 'Published VS Code Extension' },
-  { label: 'Full Stack MERN Developer' },
+export const socialProof = [
+  {
+    id: 1,
+    name: 'Open Source Community',
+    role: 'GSSoC',
+    content: 'Recognized as a dedicated contributor capable of navigating complex codebases and delivering high-quality pull requests under tight deadlines.',
+    metric: '5+ PRs Merged'
+  },
+  {
+    id: 2,
+    name: 'VS Code Marketplace',
+    role: 'Developer Tooling',
+    content: 'Successfully published a developer theme prioritizing accessibility and long-session coding comfort.',
+    metric: '100+ Installs'
+  }
 ];
+
+export const githubStats = {
+  username: 'adtshrm007',
+  commitsThisYear: 1024,
+  prsMerged: 45,
+  issuesClosed: 32,
+  topLanguages: ['JavaScript', 'HTML', 'CSS', 'TypeScript']
+};
 
 export const social = {
   email: 'adtshrm277@gmail.com',
@@ -161,20 +215,3 @@ export const social = {
   linkedin: 'https://www.linkedin.com/in/aditya-sharma-836856315/',
   twitter: 'https://x.com/ADTSHRM007',
 };
-
-export const reviews = [
-  // {
-  //   id: 1,
-  //   name: 'Sarah Jenkins',
-  //   role: 'Product Manager @ TechFlow',
-  //   content: 'Aditya is an exceptional full-stack engineer. His ability to architect scalable solutions while maintaining a pixel-perfect UI is truly impressive. He delivered our real-time dashboard ahead of schedule.',
-  //   rating: 5,
-  // },
-  // {
-  //   id: 2,
-  //   name: 'Marcus Chen',
-  //   role: 'Startup Founder',
-  //   content: 'Working with Aditya was a game-changer for our MVP. He didn\'t just write code; he provided valuable architectural insights that made the final product far more robust and user-friendly.',
-  //   rating: 5,
-  // },
-];
